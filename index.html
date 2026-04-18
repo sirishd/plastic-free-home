@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Plastic-Free Home Guide</title>
+<title>Less Plastic, Healthier Home</title>
 <style>
   :root {
     --bg: #f5f1ea;
@@ -239,7 +239,7 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>Plastic in the Home</h1>
+    <h1>Less Plastic, Healthier Home</h1>
     <p>A room-by-room guide to the plastic hiding in everyday objects — and specific products to replace them with. Click any card to see why it matters and what to buy instead.</p>
     <div class="disclaimer">
       <strong>About these picks:</strong> Products are sourced from reputable reviewers (Wirecutter, The Good Trade, independent reviewers) and well-established direct-to-consumer brands. I haven't personally tested any of them. Items tagged <span class="wc-tag">WC</span> are Wirecutter-recommended. Links go to brand sites or Amazon search results — availability and pricing change, so verify before you buy.
@@ -308,7 +308,7 @@ const data = {
         problem: "Single-use; PVC-based wraps contain plasticizers that migrate into fatty foods.",
         why: "Most cling wrap is LDPE or PVC — PVC is the worse one, containing phthalates that transfer into oily/fatty foods.",
         swaps: [
-          { desc: "Beeswax wraps — reusable for ~1 year", pick: "Bee's Wrap Variety 3-Pack", link: "https://www.beeswrap.com/products/assorted-3-pack" },
+          { desc: "Beeswax wraps — reusable for ~1 year", pick: "Bee's Wrap Variety 3-Pack", link: "https://www.beeswrap.com/collections/all" },
           { desc: "Silicone stretch lids — fit any bowl", pick: "Food Huggers Silicone Stretch Lids", link: "https://www.amazon.com/s?k=silicone+stretch+lids+set" },
           { desc: "Glass jars with lids for leftovers", pick: "Weck Glass Jars with Lids", link: "https://www.amazon.com/s?k=Weck+glass+jars" }
         ]
@@ -348,13 +348,25 @@ const data = {
         ]
       },
       {
+        title: "Dishwasher detergent",
+        impact: "med",
+        problem: "Most 'pods' are wrapped in PVA — a plastic film that dissolves but doesn't fully biodegrade. Cardboard boxes are misleading if the pods inside are still plastic-wrapped.",
+        why: "A widely-cited 2021 study estimated ~75% of PVA film from detergent pods persists in the environment as microplastic, adding roughly 17,000 tons to U.S. wastewater annually. True plastic-free options skip the pod wrap entirely and use compressed powder tablets or loose powder.",
+        swaps: [
+          { desc: "Compressed powder tablets — no PVA wrap, refillable tin", pick: "Blueland Dishwasher Tablets + Forever Tin", link: "https://www.blueland.com/products/dishwasher-starter-set" },
+          { desc: "Powder in cardboard box — no PVA film at all (box has a thin plastic moisture coating)", pick: "Seventh Generation Free & Clear Dishwasher Powder", link: "https://www.seventhgeneration.com/dishwasher-powder-detergent" },
+          { desc: "Bio-enzyme powder, no pod wrap", pick: "Dirty Labs Bio Enzyme Dish Detergent", link: "https://dirtylabs.com/products/bio-enzyme-dish-detergent" },
+          { desc: "Fragrance-free powder in recyclable packaging", pick: "Molly's Suds Dishwasher Powder", link: "https://www.mollyssuds.com/" }
+        ]
+      },
+      {
         title: "Coffee pods",
         impact: "med",
         problem: "Single-use aluminum-or-plastic capsules; hot water passes directly through plastic.",
         why: "Beyond waste, hot pressurized water through plastic is a leaching scenario.",
         swaps: [
-          { desc: "AeroPress — plastic but reusable for years", pick: "AeroPress Original", link: "https://aeropress.com/products/aeropress-original" },
-          { desc: "Glass pour-over (classic)", pick: "Chemex Classic Series 6-Cup", link: "https://www.chemexcoffeemaker.com/six-cup-classic-series-coffeemaker.html" },
+          { desc: "AeroPress — plastic but reusable for years", pick: "AeroPress Original", link: "https://aeropress.com/products/aeropress-coffee-maker" },
+          { desc: "Glass pour-over (classic)", pick: "Chemex Classic Series 6-Cup", link: "https://chemexcoffeemaker.com/products/six-cup-classic-chemex" },
           { desc: "Stainless steel French press", pick: "Espro P7 French Press", link: "https://www.amazon.com/s?k=Espro+P7+stainless+steel+french+press" }
         ]
       },
@@ -374,8 +386,8 @@ const data = {
         problem: "Bottled water contains ~240,000 plastic particles per liter on average (2024 study).",
         why: "Nanoplastics small enough to cross cell membranes — found in blood, placentas, and testes in recent research.",
         swaps: [
-          { desc: "Stainless steel bottle (classic)", pick: "Klean Kanteen Classic 27oz", link: "https://www.kleankanteen.com/collections/classic-insulated-water-bottles" },
-          { desc: "Insulated option that keeps cold 24h", pick: "Hydro Flask Standard Mouth", link: "https://www.hydroflask.com/shop/water-bottles" },
+          { desc: "Stainless steel bottle (classic)", pick: "Klean Kanteen Classic Stainless Steel", link: "https://www.kleankanteen.com/collections/classic" },
+          { desc: "Insulated option that keeps cold 24h", pick: "Hydro Flask Standard Mouth", link: "https://www.hydroflask.com/shop/bottles-drinkware/bottles" },
           { desc: "Glass bottle with silicone sleeve", pick: "Lifefactory Glass Water Bottle", link: "https://www.amazon.com/s?k=Lifefactory+glass+water+bottle" }
         ]
       }
@@ -425,7 +437,7 @@ const data = {
         why: "Banned in many countries for rinse-off products but still found in some imports and leave-on products. Check for 'polyethylene,' 'polypropylene,' 'PET' in ingredients.",
         swaps: [
           { desc: "Sugar scrub with natural exfoliants", pick: "Osea Salts of the Earth Body Scrub", link: "https://www.amazon.com/s?k=Osea+Salts+of+the+Earth+body+scrub" },
-          { desc: "Plastic-free exfoliating bar", pick: "Ethique Body Polish Bar", link: "https://ethique.com/collections/body-scrubs" },
+          { desc: "Plastic-free exfoliating bar", pick: "Ethique Body Polish Bar", link: "https://ethique.com/" },
           { desc: "Physical exfoliation with a mitt", pick: "Italian Exfoliating Mitt", link: "https://www.amazon.com/s?k=italian+exfoliating+mitt" }
         ]
       },
@@ -478,7 +490,7 @@ const data = {
         why: "Waste reduction, not health.",
         swaps: [
           { desc: "Classic bar soap (best for sensitive skin)", pick: "Dr. Bronner's Pure-Castile Bar Soap", link: "https://www.drbronner.com/collections/bar-soaps" },
-          { desc: "Body wash bar with better lather", pick: "Ethique Body Wash Bar", link: "https://ethique.com/collections/body-wash" },
+          { desc: "Body wash bar with better lather", pick: "Ethique Body Wash Bar", link: "https://ethique.com/" },
           { desc: "Refillable foam dispenser with concentrate", pick: "Blueland Hand Soap Starter Set", link: "https://www.blueland.com/products/hand-soap-starter-set" }
         ]
       }
@@ -496,9 +508,10 @@ const data = {
         why: "Synthetic bedding is a top source of household microplastic. Natural fibers also regulate temperature better.",
         swaps: [
           { desc: "Percale cotton — Wirecutter top pick", pick: "Authenticity 50 Percale Sheets", link: "https://authenticity50.com/collections/bedding", wc: true },
-          { desc: "Certified organic cotton for sensitive skin", pick: "Coyuchi Organic Percale Sheets", link: "https://www.coyuchi.com/organic-sheets.html" },
+          { desc: "Certified organic cotton for sensitive skin", pick: "Coyuchi Organic Percale Sheets", link: "https://www.coyuchi.com/collections/organic-cotton-sheets" },
           { desc: "European flax linen — gets softer over time", pick: "MagicLinen Sheet Set", link: "https://magiclinen.com/collections/bedding" },
-          { desc: "Fair-trade organic option", pick: "Boll & Branch Signature Hemmed Sheet Set", link: "https://www.bollandbranch.com/products/signature-hemmed-sheet-set" }
+          { desc: "Fair-trade organic, premium tier", pick: "Boll & Branch Signature Hemmed Sheet Set", link: "https://www.bollandbranch.com/products/signature-hemmed-sheet-set" },
+          { desc: "Affordable Fair Trade organic (percale or sateen)", pick: "Pact Organic Cotton Sheets", link: "https://wearpact.com/home/bedding" }
         ]
       },
       {
@@ -573,7 +586,9 @@ const data = {
         swaps: [
           { desc: "Dissolvable detergent sheets (most convenient)", pick: "Earth Breeze Laundry Sheets", link: "https://earthbreeze.com/products/laundry-detergent-eco-sheets" },
           { desc: "Pods in cardboard (no plastic wrap)", pick: "Dropps Laundry Pods", link: "https://www.dropps.com/" },
-          { desc: "Traditional powder in cardboard", pick: "Molly's Suds Laundry Powder", link: "https://www.mollyssuds.com/" }
+          { desc: "Traditional powder in cardboard", pick: "Molly's Suds Laundry Powder", link: "https://www.mollyssuds.com/" },
+          { desc: "Oxygen-based brightener/bleach alternative in a 100% recyclable metal tin", pick: "Nellie's Oxygen Brightener (Tin)", link: "https://nelliesclean.com/products/oxygen-brightener" },
+          { desc: "USDA Organic liquid — cleaner ingredients, but still plastic bottle", pick: "Rebel Green Organic Fresh Laundry Detergent", link: "https://rebelgreen.com/collections/laundry" }
         ]
       },
       {
@@ -615,7 +630,7 @@ const data = {
         why: "Tiny per-item, but adds up fast.",
         swaps: [
           { desc: "Cotton mesh produce bags", pick: "Ecobags Organic Cotton Mesh Bags", link: "https://www.ecobags.com/" },
-          { desc: "Reusable shopping totes", pick: "Baggu Standard Bag", link: "https://baggu.com/products/standard-baggu-single" }
+          { desc: "Reusable shopping totes", pick: "Baggu Standard Bag", link: "https://baggu.com/collections/standard-baggu" }
         ]
       },
       {
