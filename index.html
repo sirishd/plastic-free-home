@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plastic-Free Home Guide</title>
+<style>
+  :root {
+    --bg: #f5f1ea;
+    --card: #ffffff;
+    --ink: #1e2a24;
+    --muted: #5f6b63;
+    --accent: #2d6a4f;
+    --accent-soft: #d8e8df;
+    --warn: #b5563a;
+    --warn-soft: #f4dccd;
+    --border: #e4ddd1;
+    --high: #b5563a;
+    --med: #c48a3f;
+    --low: #6b8e5a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+  header h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+  header p {
+    color: var(--muted);
+    margin: 0 0 18px;
+    max-width: 680px;
+  }
+  .disclaimer {
+    background: #fff7e6;
+    border-left: 3px solid var(--med);
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 28px;
+    max-width: 680px;
+  }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .tab {
+    padding: 12px 18px;
+    background: transparent;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.15s;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-icon { font-size: 18px; }
+  .room-intro {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    border-color: var(--accent);
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .impact {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .impact.high { background: #f4dccd; color: var(--high); }
+  .impact.med  { background: #f7ead1; color: var(--med); }
+  .impact.low  { background: #e0ebd6; color: var(--low); }
+  .problem {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .swap-preview {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .detail {
+    display: none;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+    font-size: 14px;
+  }
+  .card.open .detail { display: block; }
+  .card.open { border-color: var(--accent); }
+  .detail h4 {
+    margin: 0 0 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .detail .why {
+    background: var(--warn-soft);
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .swap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 6px;
+  }
+  .swap-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .swap-list li:last-child { border-bottom: none; }
+  .swap-desc {
+    display: block;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .product-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 3px 0;
+  }
+  .product-link:hover { text-decoration: underline; }
+  .product-link .arrow { font-size: 11px; }
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot.high { background: var(--high); }
+  .dot.med { background: var(--med); }
+  .dot.low { background: var(--low); }
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer strong { color: var(--ink); }
+  .wc-tag {
+    font-size: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Plastic in the Home</h1>
+    <p>A room-by-room guide to the plastic hiding in everyday objects — and specific products to replace them with. Click any card to see why it matters and what to buy instead.</p>
+    <div class="disclaimer">
+      <strong>About these picks:</strong> Products are sourced from reputable reviewers (Wirecutter, The Good Trade, independent reviewers) and well-established direct-to-consumer brands. I haven't personally tested any of them. Items tagged <span class="wc-tag">WC</span> are Wirecutter-recommended. Links go to brand sites or Amazon search results — availability and pricing change, so verify before you buy.
+    </div>
+  </header>
+
+  <div class="legend">
+    <span class="legend-item"><span class="dot high"></span> High impact — direct food/skin contact or microplastic shedding</span>
+    <span class="legend-item"><span class="dot med"></span> Medium impact — exposure or waste volume</span>
+    <span class="legend-item"><span class="dot low"></span> Low impact — mostly a waste reduction win</span>
+  </div>
+
+  <nav class="tabs" id="tabs"></nav>
+  <div id="room-content"></div>
+
+  <footer>
+    <strong>A reasonable note:</strong> You can't eliminate plastic entirely, and trying to do it all at once is the fastest way to give up. The "high impact" cards are where your effort pays off most — food contact and anything you sleep on, scrub with, or inhale around. Start there, then work outward. Thrift and second-hand are often the most sustainable options of all, even if the item is synthetic.
+  </footer>
+</div>
+
+<script>
+const data = {
+  kitchen: {
+    label: "Kitchen",
+    icon: "🍳",
+    intro: "This is the highest-stakes room. Plastic in contact with heat, oil, acid, or abrasion sheds microplastics directly into food. Prioritize swaps here.",
+    items: [
+      {
+        title: "Non-stick pans",
+        impact: "high",
+        problem: "PTFE/PFAS coatings degrade and flake when scratched or overheated.",
+        why: "Forever chemicals (PFAS) have been linked to hormonal disruption and accumulate in the body. Overheated non-stick releases fumes toxic to pet birds and irritating to humans.",
+        swaps: [
+          { desc: "Cast iron — hand-cast in NY from 100% recycled iron", pick: "Borough Furnace 10.5\" Frying Skillet", link: "https://boroughfurnace.com/" },
+          { desc: "Carbon steel — lighter than cast iron, heats fast", pick: "OXO Obsidian Carbon Steel Frypan", link: "https://www.amazon.com/s?k=OXO+Obsidian+Carbon+Steel+Frypan", wc: true },
+          { desc: "Stainless steel clad — versatile, dishwasher-safe", pick: "Made In 10\" Stainless Clad Frying Pan", link: "https://madeincookware.com/products/stainless-clad-frying-pan" },
+          { desc: "Ceramic-coated — shorter lifespan but PFAS-free", pick: "Caraway Fry Pan", link: "https://www.carawayhome.com/products/fry-pan" }
+        ]
+      },
+      {
+        title: "Plastic cutting boards",
+        impact: "high",
+        problem: "Every knife stroke sheds microplastic into your food.",
+        why: "A 2023 study estimated plastic boards release 50+ grams of microplastic per person per year into food directly.",
+        swaps: [
+          { desc: "End-grain wood — self-healing and antimicrobial", pick: "John Boos Edge-Grain Maple Board", link: "https://www.johnboos.com/" },
+          { desc: "Affordable edge-grain alternative", pick: "Teakhaus Edge Grain Cutting Board", link: "https://www.amazon.com/s?k=Teakhaus+edge+grain+cutting+board" },
+          { desc: "Bamboo — harder, cheaper, sustainable", pick: "Greener Chef Bamboo Cutting Board", link: "https://www.amazon.com/s?k=Greener+Chef+bamboo+cutting+board" }
+        ]
+      },
+      {
+        title: "Food storage containers",
+        impact: "high",
+        problem: "Plastic leaches faster when heated, oily, or acidic — which is exactly what leftovers are.",
+        why: "Microwaving plastic, even 'microwave-safe' kinds, accelerates chemical migration. Tomato sauce and citrus are particularly effective at pulling compounds out of plastic.",
+        swaps: [
+          { desc: "Fully plastic-free glass set (glass lids)", pick: "Pyrex Ultimate 10-Piece Glass Storage Set", link: "https://www.amazon.com/s?k=Pyrex+Ultimate+10+Piece+Glass+Storage", wc: true },
+          { desc: "Glass with sealed lids for leak-proof storage", pick: "Pyrex Freshlock 10-piece Set", link: "https://www.amazon.com/s?k=Pyrex+Freshlock+10+piece+glass+storage", wc: true },
+          { desc: "Stainless steel tiffins for lunch/dry food", pick: "Onyx Stainless Steel Food Containers", link: "https://www.amazon.com/s?k=Onyx+stainless+steel+food+container" },
+          { desc: "Mason jars for liquids and dry goods", pick: "Ball Wide Mouth Mason Jars", link: "https://www.amazon.com/s?k=Ball+wide+mouth+mason+jars" }
+        ]
+      },
+      {
+        title: "Cling wrap",
+        impact: "med",
+        problem: "Single-use; PVC-based wraps contain plasticizers that migrate into fatty foods.",
+        why: "Most cling wrap is LDPE or PVC — PVC is the worse one, containing phthalates that transfer into oily/fatty foods.",
+        swaps: [
+          { desc: "Beeswax wraps — reusable for ~1 year", pick: "Bee's Wrap Variety 3-Pack", link: "https://www.beeswrap.com/products/assorted-3-pack" },
+          { desc: "Silicone stretch lids — fit any bowl", pick: "Food Huggers Silicone Stretch Lids", link: "https://www.amazon.com/s?k=silicone+stretch+lids+set" },
+          { desc: "Glass jars with lids for leftovers", pick: "Weck Glass Jars with Lids", link: "https://www.amazon.com/s?k=Weck+glass+jars" }
+        ]
+      },
+      {
+        title: "Tea bags",
+        impact: "high",
+        problem: "Most 'silky' tea bags are nylon or PET; even paper bags are often sealed with plastic.",
+        why: "One study found a single plastic tea bag releases ~11 billion microplastic particles into hot water. Paper bags sealed with polypropylene shed less but still shed.",
+        swaps: [
+          { desc: "Plastic-free bagged tea (unbleached hemp/abaca)", pick: "Numi Organic Tea", link: "https://numitea.com/" },
+          { desc: "Classic plastic-free bagged option", pick: "Pukka Herbs Organic Tea", link: "https://www.amazon.com/s?k=Pukka+Herbs+organic+tea" },
+          { desc: "High-quality loose-leaf tea (zero waste)", pick: "Rishi Tea Loose Leaf", link: "https://rishi-tea.com/" },
+          { desc: "Stainless steel tea infuser", pick: "FORLIFE Brew in Mug Infuser", link: "https://www.amazon.com/s?k=FORLIFE+tea+infuser+stainless+steel" }
+        ]
+      },
+      {
+        title: "Plastic utensils & spatulas",
+        impact: "med",
+        problem: "Contact with hot pans causes melting and leaching; black plastic utensils are often made from recycled e-waste containing flame retardants.",
+        why: "A 2024 study found high levels of brominated flame retardants in black plastic kitchenware made from recycled electronics.",
+        swaps: [
+          { desc: "Wooden spoons and spatulas", pick: "Earlywood Wooden Utensils", link: "https://earlywooddesigns.com/" },
+          { desc: "Stainless steel fish turner (incredibly versatile)", pick: "Victorinox Swiss Army Slotted Fish Turner", link: "https://www.amazon.com/s?k=Victorinox+Swiss+Army+Slotted+Fish+Turner", wc: true },
+          { desc: "Food-grade silicone for heat-tolerant flex", pick: "GIR Ultimate Spatula", link: "https://gir.co/products/ultimate-spatula", wc: true }
+        ]
+      },
+      {
+        title: "Dish sponges",
+        impact: "med",
+        problem: "Standard sponges are polyurethane foam — they shed microplastic with every scrub.",
+        why: "A single sponge sheds thousands of fibers into your sink per wash, going straight to waterways.",
+        swaps: [
+          { desc: "Swedish dishcloths (cellulose + cotton)", pick: "Three Bluebirds Swedish Dishcloths", link: "https://threebluebirds.com/collections/all" },
+          { desc: "Wooden dish brush with replaceable heads", pick: "Redecker Natural Wood Dish Brush", link: "https://www.amazon.com/s?k=Redecker+dish+brush" },
+          { desc: "Coconut coir scrubber for tough jobs", pick: "Safix Coconut Coir Scrub Pad", link: "https://www.amazon.com/s?k=Safix+coconut+coir+scrub" }
+        ]
+      },
+      {
+        title: "Coffee pods",
+        impact: "med",
+        problem: "Single-use aluminum-or-plastic capsules; hot water passes directly through plastic.",
+        why: "Beyond waste, hot pressurized water through plastic is a leaching scenario.",
+        swaps: [
+          { desc: "AeroPress — plastic but reusable for years", pick: "AeroPress Original", link: "https://aeropress.com/products/aeropress-original" },
+          { desc: "Glass pour-over (classic)", pick: "Chemex Classic Series 6-Cup", link: "https://www.chemexcoffeemaker.com/six-cup-classic-series-coffeemaker.html" },
+          { desc: "Stainless steel French press", pick: "Espro P7 French Press", link: "https://www.amazon.com/s?k=Espro+P7+stainless+steel+french+press" }
+        ]
+      },
+      {
+        title: "Ziploc / freezer bags",
+        impact: "low",
+        problem: "Single-use; fine for dry storage but leach in the freezer over months and during sous-vide.",
+        why: "Not a huge health risk for dry goods, but high waste volume.",
+        swaps: [
+          { desc: "Platinum silicone reusable bags", pick: "Stasher Reusable Silicone Bags", link: "https://www.stasherbag.com/collections/bags" },
+          { desc: "Glass jars with freezer-safe lids (leave headspace)", pick: "Weck Straight-Sided Jars", link: "https://www.amazon.com/s?k=Weck+straight+sided+jars" }
+        ]
+      },
+      {
+        title: "Plastic water bottles",
+        impact: "high",
+        problem: "Bottled water contains ~240,000 plastic particles per liter on average (2024 study).",
+        why: "Nanoplastics small enough to cross cell membranes — found in blood, placentas, and testes in recent research.",
+        swaps: [
+          { desc: "Stainless steel bottle (classic)", pick: "Klean Kanteen Classic 27oz", link: "https://www.kleankanteen.com/collections/classic-insulated-water-bottles" },
+          { desc: "Insulated option that keeps cold 24h", pick: "Hydro Flask Standard Mouth", link: "https://www.hydroflask.com/shop/water-bottles" },
+          { desc: "Glass bottle with silicone sleeve", pick: "Lifefactory Glass Water Bottle", link: "https://www.amazon.com/s?k=Lifefactory+glass+water+bottle" }
+        ]
+      }
+    ]
+  },
+  bathroom: {
+    label: "Bathroom",
+    icon: "🛁",
+    intro: "Second-highest-stakes room. Heat, steam, direct skin contact — plus daily-use items that pile up as waste.",
+    items: [
+      {
+        title: "Plastic toothbrush",
+        impact: "med",
+        problem: "Replaced every 3 months; billions end up in landfills annually.",
+        why: "Bristles shed microplastic into your mouth during brushing.",
+        swaps: [
+          { desc: "Bamboo handle — snap off handle to compost (bristles still nylon)", pick: "Brush with Bamboo Toothbrush", link: "https://brushwithbamboo.com/" },
+          { desc: "Replaceable-head toothbrush to minimize handle waste", pick: "Hydrophil Replaceable Head Brush", link: "https://www.amazon.com/s?k=replaceable+head+bamboo+toothbrush" }
+        ]
+      },
+      {
+        title: "Shampoo & conditioner bottles",
+        impact: "med",
+        problem: "Massive plastic volume; most aren't actually recycled.",
+        why: "One shampoo bar replaces 2–3 bottles. Bathroom plastic sits in steam and heat, slowly breaking down.",
+        swaps: [
+          { desc: "Wirecutter-picked bar for everyday use", pick: "Ethique Shampoo Bar (Unscented)", link: "https://ethique.com/collections/shampoo", wc: true },
+          { desc: "Soap-free surfactant bar (best for hard water)", pick: "HiBAR Moisturize Shampoo Bar", link: "https://www.hellohibar.com/" },
+          { desc: "Popular rice-powered formula (great for fine hair)", pick: "Viori Reverie Cove Shampoo Bar", link: "https://viori.com/products/reverie-cove-shampoo-bar" }
+        ]
+      },
+      {
+        title: "Disposable razors",
+        impact: "low",
+        problem: "Not recyclable; entirely plastic plus metal bonded together.",
+        why: "Waste volume rather than health risk. Safety razors give a better shave once you learn the angle.",
+        swaps: [
+          { desc: "Classic German safety razor (lasts forever)", pick: "Merkur 34C Heavy Duty Safety Razor", link: "https://www.amazon.com/s?k=Merkur+34C+safety+razor" },
+          { desc: "Easier-learning-curve safety razor", pick: "Leaf Twig Single-Edge Razor", link: "https://leafshave.com/products/twig" },
+          { desc: "Stainless steel blades (fit any safety razor)", pick: "Astra Superior Platinum Blades", link: "https://www.amazon.com/s?k=Astra+Superior+Platinum+double+edge+blades" }
+        ]
+      },
+      {
+        title: "Exfoliants with microbeads",
+        impact: "high",
+        problem: "Microplastic beads washed directly down the drain, through treatment plants, into oceans.",
+        why: "Banned in many countries for rinse-off products but still found in some imports and leave-on products. Check for 'polyethylene,' 'polypropylene,' 'PET' in ingredients.",
+        swaps: [
+          { desc: "Sugar scrub with natural exfoliants", pick: "Osea Salts of the Earth Body Scrub", link: "https://www.amazon.com/s?k=Osea+Salts+of+the+Earth+body+scrub" },
+          { desc: "Plastic-free exfoliating bar", pick: "Ethique Body Polish Bar", link: "https://ethique.com/collections/body-scrubs" },
+          { desc: "Physical exfoliation with a mitt", pick: "Italian Exfoliating Mitt", link: "https://www.amazon.com/s?k=italian+exfoliating+mitt" }
+        ]
+      },
+      {
+        title: "Synthetic loofahs & poufs",
+        impact: "low",
+        problem: "Nylon mesh sheds microplastic and harbors bacteria.",
+        why: "More of a hygiene and waste issue than a leaching one.",
+        swaps: [
+          { desc: "Real loofah (it's a dried gourd)", pick: "Natural Loofah Sponge", link: "https://www.amazon.com/s?k=natural+loofah+sponge+real" },
+          { desc: "Organic cotton washcloth", pick: "Coyuchi Organic Cotton Washcloth", link: "https://www.coyuchi.com/" },
+          { desc: "Natural sea sponge", pick: "Acme Sponge Natural Sea Sponge", link: "https://www.amazon.com/s?k=natural+sea+sponge+bath" }
+        ]
+      },
+      {
+        title: "Dental floss",
+        impact: "med",
+        problem: "Nylon or Teflon-coated floss in plastic dispensers — PFAS on something you run between your gums.",
+        why: "PFAS-coated floss has been linked to higher levels of forever chemicals in blood samples.",
+        swaps: [
+          { desc: "Silk floss in refillable glass dispenser", pick: "Dental Lace Silk Floss", link: "https://www.dentallace.com/" },
+          { desc: "Plant-based PFAS-free floss", pick: "Radius Silk Floss", link: "https://www.amazon.com/s?k=Radius+silk+floss" }
+        ]
+      },
+      {
+        title: "Shower curtain (PVC)",
+        impact: "med",
+        problem: "That 'new shower curtain' smell is off-gassing phthalates and VOCs.",
+        why: "Worst offender is PVC (#3 plastic). You inhale these chemicals every shower for months.",
+        swaps: [
+          { desc: "Hemp curtain (naturally mildew-resistant)", pick: "Rawganique Hemp Shower Curtain", link: "https://www.rawganique.com/" },
+          { desc: "Organic cotton curtain", pick: "Coyuchi Organic Cotton Shower Curtain", link: "https://www.coyuchi.com/" },
+          { desc: "PEVA liner (phthalate-free lesser evil)", pick: "EVA Shower Curtain Liner", link: "https://www.amazon.com/s?k=PEVA+shower+curtain+liner" }
+        ]
+      },
+      {
+        title: "Q-tips / cotton swabs",
+        impact: "low",
+        problem: "Plastic stems flushed down toilets are a major marine pollutant.",
+        why: "Low personal impact, real ocean impact.",
+        swaps: [
+          { desc: "Reusable silicone ear pick", pick: "LastSwab Reusable Cotton Swab", link: "https://lastobject.com/products/lastswab" },
+          { desc: "Bamboo-stem swabs", pick: "The Humble Co. Bamboo Cotton Swabs", link: "https://www.amazon.com/s?k=Humble+Co+bamboo+cotton+swabs" }
+        ]
+      },
+      {
+        title: "Liquid hand & body soap",
+        impact: "low",
+        problem: "Pump bottles are mostly unrecyclable due to mixed materials in the pump.",
+        why: "Waste reduction, not health.",
+        swaps: [
+          { desc: "Classic bar soap (best for sensitive skin)", pick: "Dr. Bronner's Pure-Castile Bar Soap", link: "https://www.drbronner.com/collections/bar-soaps" },
+          { desc: "Body wash bar with better lather", pick: "Ethique Body Wash Bar", link: "https://ethique.com/collections/body-wash" },
+          { desc: "Refillable foam dispenser with concentrate", pick: "Blueland Hand Soap Starter Set", link: "https://www.blueland.com/products/hand-soap-starter-set" }
+        ]
+      }
+    ]
+  },
+  bedroom: {
+    label: "Bedroom",
+    icon: "🛏️",
+    intro: "You spend a third of your life here breathing in whatever the bed and air are made of. Synthetic fibers shed microplastic 24/7 and off-gas flame retardants for months.",
+    items: [
+      {
+        title: "Polyester bedsheets",
+        impact: "high",
+        problem: "Plastic fibers against your skin for 8 hours; shedding microplastic into the air you breathe.",
+        why: "Synthetic bedding is a top source of household microplastic. Natural fibers also regulate temperature better.",
+        swaps: [
+          { desc: "Percale cotton — Wirecutter top pick", pick: "Authenticity 50 Percale Sheets", link: "https://authenticity50.com/collections/bedding", wc: true },
+          { desc: "Certified organic cotton for sensitive skin", pick: "Coyuchi Organic Percale Sheets", link: "https://www.coyuchi.com/organic-sheets.html" },
+          { desc: "European flax linen — gets softer over time", pick: "MagicLinen Sheet Set", link: "https://magiclinen.com/collections/bedding" },
+          { desc: "Fair-trade organic option", pick: "Boll & Branch Signature Hemmed Sheet Set", link: "https://www.bollandbranch.com/products/signature-hemmed-sheet-set" }
+        ]
+      },
+      {
+        title: "Memory foam pillows & toppers",
+        impact: "high",
+        problem: "Polyurethane foam + flame retardants; off-gassing lasts months to years.",
+        why: "VOCs from foam have been linked to headaches and respiratory irritation. Flame retardants are endocrine disruptors.",
+        swaps: [
+          { desc: "Natural latex pillow (GOLS certified)", pick: "Avocado Green Pillow", link: "https://www.avocadogreenmattress.com/products/organic-green-pillow" },
+          { desc: "Buckwheat hull pillow (firm, moldable, cool)", pick: "Hullo Buckwheat Pillow", link: "https://www.hullopillow.com/" },
+          { desc: "Wool-filled pillow (regulates temperature)", pick: "Holy Lamb Organics Wool Pillow", link: "https://www.amazon.com/s?k=Holy+Lamb+Organics+wool+pillow" },
+          { desc: "Natural latex mattress topper", pick: "Avocado Green Latex Topper", link: "https://www.avocadogreenmattress.com/products/organic-latex-mattress-topper" }
+        ]
+      },
+      {
+        title: "Synthetic clothes in closet",
+        impact: "high",
+        problem: "Every wash releases ~700,000 microfibers; dryers blow them into household air.",
+        why: "Polyester, nylon, acrylic, spandex — all plastic. Check labels: 'performance fabric' = plastic.",
+        swaps: [
+          { desc: "Organic cotton basics", pick: "Pact Apparel Essentials", link: "https://wearpact.com/" },
+          { desc: "Merino wool for activewear replacement", pick: "Icebreaker Merino Basics", link: "https://www.icebreaker.com/" },
+          { desc: "Catches ~86% of microfibers from existing synthetics", pick: "Guppyfriend Wash Bag", link: "https://en.guppyfriend.com/products/guppyfriend-washing-bag" },
+          { desc: "Washing machine microfiber filter", pick: "Cora Ball", link: "https://coraball.com/" }
+        ]
+      },
+      {
+        title: "Plastic hangers",
+        impact: "low",
+        problem: "Break, crack, warp — frequent replacement.",
+        why: "Low health impact; moderate waste.",
+        swaps: [
+          { desc: "Cedar hangers (repels moths)", pick: "Zober Cedar Wood Hangers", link: "https://www.amazon.com/s?k=Zober+cedar+wood+hangers" },
+          { desc: "Basic wooden hangers at volume", pick: "Wooden Hangers Bulk", link: "https://www.amazon.com/s?k=wooden+hangers+bulk" },
+          { desc: "Free option: reuse dry-cleaner wire hangers", pick: "", link: "" }
+        ]
+      },
+      {
+        title: "Synthetic carpet",
+        impact: "med",
+        problem: "Nylon or polyester backed with latex; sheds fibers and VOCs for years.",
+        why: "Indoor air quality drops significantly with new synthetic carpet — particularly relevant for kids crawling on it.",
+        swaps: [
+          { desc: "Machine-washable cotton/wool rugs", pick: "Lorena Canals Washable Rugs", link: "https://lorenacanals.us/" },
+          { desc: "Handwoven wool rugs (investment piece)", pick: "Armadillo & Co Wool Rugs", link: "https://armadillo-co.com/" },
+          { desc: "Flat-weave natural fiber", pick: "Safavieh Natural Jute Rug", link: "https://www.amazon.com/s?k=jute+rug+natural+fiber" }
+        ]
+      },
+      {
+        title: "Plastic storage bins",
+        impact: "low",
+        problem: "Off-gas in warm spaces (attics, closets); degrade and crack over time.",
+        why: "Low concern for dry storage; higher if storing textiles long-term.",
+        swaps: [
+          { desc: "Woven seagrass baskets", pick: "The Citizenry Woven Storage Baskets", link: "https://www.the-citizenry.com/" },
+          { desc: "Canvas storage cubes", pick: "Open Spaces Canvas Bins", link: "https://www.getopenspaces.com/" },
+          { desc: "Italian-paper storage bags (look great on shelves)", pick: "Uashmama Paper Bags", link: "https://www.amazon.com/s?k=Uashmama+paper+bag" }
+        ]
+      }
+    ]
+  },
+  general: {
+    label: "Living & Laundry",
+    icon: "🧺",
+    intro: "The easy wins and the quiet sources you probably haven't thought about.",
+    items: [
+      {
+        title: "Laundry detergent",
+        impact: "med",
+        problem: "Huge plastic jugs; liquid is mostly water being shipped around.",
+        why: "Detergent sheets and concentrates also reduce shipping emissions significantly.",
+        swaps: [
+          { desc: "Dissolvable detergent sheets (most convenient)", pick: "Earth Breeze Laundry Sheets", link: "https://earthbreeze.com/products/laundry-detergent-eco-sheets" },
+          { desc: "Pods in cardboard (no plastic wrap)", pick: "Dropps Laundry Pods", link: "https://www.dropps.com/" },
+          { desc: "Traditional powder in cardboard", pick: "Molly's Suds Laundry Powder", link: "https://www.mollyssuds.com/" }
+        ]
+      },
+      {
+        title: "Dryer sheets",
+        impact: "med",
+        problem: "Polyester sheets coated with synthetic fragrance that coats your clothes.",
+        why: "VOCs vented from dryers are a documented source of outdoor air pollution.",
+        swaps: [
+          { desc: "Wool dryer balls (reuse for years)", pick: "Smart Sheep Wool Dryer Balls 6-Pack", link: "https://www.amazon.com/s?k=Smart+Sheep+wool+dryer+balls" },
+          { desc: "White vinegar in the rinse cycle", pick: "Distilled White Vinegar (any brand)", link: "https://www.amazon.com/s?k=distilled+white+vinegar+gallon" }
+        ]
+      },
+      {
+        title: "Synthetic throws & cushions",
+        impact: "med",
+        problem: "Fleece and microfleece are pure polyester — huge microfiber shedders.",
+        why: "Fleece is one of the worst offenders per wash.",
+        swaps: [
+          { desc: "Classic American wool throw", pick: "Pendleton Eco-Wise Wool Blanket", link: "https://www.pendleton-usa.com/" },
+          { desc: "Organic cotton throw", pick: "Coyuchi Cozy Cotton Organic Throw", link: "https://www.coyuchi.com/" },
+          { desc: "Second-hand natural-fiber finds", pick: "Check eBay / local vintage", link: "https://www.ebay.com/sch/i.html?_nkw=vintage+wool+blanket" }
+        ]
+      },
+      {
+        title: "Cleaning product bottles",
+        impact: "low",
+        problem: "Single-use plastic; mostly water being shipped.",
+        why: "Waste reduction play.",
+        swaps: [
+          { desc: "Dissolvable tablets in refillable bottles", pick: "Blueland Clean Essentials Kit", link: "https://www.blueland.com/products/the-clean-essentials" },
+          { desc: "Single concentrate for all cleaning", pick: "Branch Basics Concentrate", link: "https://branchbasics.com/products/branch-basics-concentrate" },
+          { desc: "Biodegradable general cleaner", pick: "Dr. Bronner's Sal Suds", link: "https://www.drbronner.com/products/sal-suds-biodegradable-cleaner" }
+        ]
+      },
+      {
+        title: "Produce bags at grocery",
+        impact: "low",
+        problem: "Single-use thin-film plastic that's almost never recycled.",
+        why: "Tiny per-item, but adds up fast.",
+        swaps: [
+          { desc: "Cotton mesh produce bags", pick: "Ecobags Organic Cotton Mesh Bags", link: "https://www.ecobags.com/" },
+          { desc: "Reusable shopping totes", pick: "Baggu Standard Bag", link: "https://baggu.com/products/standard-baggu-single" }
+        ]
+      },
+      {
+        title: "Trash bags",
+        impact: "low",
+        problem: "Unavoidable for many people, but plastic-lined and single-use.",
+        why: "Compostable bags only actually compost in industrial facilities — don't let the label mislead you.",
+        swaps: [
+          { desc: "Primary lever: reduce waste at source", pick: "", link: "" },
+          { desc: "Paper bags for dry trash", pick: "Brown Paper Grocery Bags", link: "https://www.amazon.com/s?k=brown+paper+grocery+bags+bulk" },
+          { desc: "Only if you have industrial composting access", pick: "Compostic Compostable Bags", link: "https://compostic.com/" }
+        ]
+      }
+    ]
+  }
+};
+
+const tabsEl = document.getElementById("tabs");
+const contentEl = document.getElementById("room-content");
+const order = ["kitchen", "bathroom", "bedroom", "general"];
+
+let active = "kitchen";
+
+function renderSwap(s) {
+  const wcBadge = s.wc ? `<span class="wc-tag">WC</span>` : '';
+  const linkBlock = s.pick && s.link
+    ? `<a class="product-link" href="${s.link}" target="_blank" rel="noopener noreferrer">→ ${s.pick}${wcBadge}<span class="arrow">↗</span></a>`
+    : (s.pick ? `<span class="product-link">${s.pick}</span>` : '');
+  return `<li>
+      <span class="swap-desc">${s.desc}</span>
+      ${linkBlock}
+    </li>`;
+}
+
+function render() {
+  tabsEl.innerHTML = "";
+  order.forEach(key => {
+    const btn = document.createElement("button");
+    btn.className = "tab" + (active === key ? " active" : "");
+    btn.innerHTML = `<span class="tab-icon">${data[key].icon}</span>${data[key].label}`;
+    btn.onclick = () => { active = key; render(); };
+    tabsEl.appendChild(btn);
+  });
+
+  const room = data[active];
+  contentEl.innerHTML = `
+    <div class="room-intro">${room.intro}</div>
+    <div class="grid" id="grid"></div>
+  `;
+  const grid = document.getElementById("grid");
+
+  room.items.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="card-top">
+        <h3 class="card-title">${item.title}</h3>
+        <span class="impact ${item.impact}">${item.impact === "high" ? "High" : item.impact === "med" ? "Medium" : "Low"}</span>
+      </div>
+      <p class="problem">${item.problem}</p>
+      <div class="swap-preview">→ ${item.swaps.length} swap${item.swaps.length > 1 ? "s" : ""} · click to see products</div>
+      <div class="detail">
+        <div class="why"><strong>Why it matters:</strong> ${item.why}</div>
+        <h4>Better alternatives</h4>
+        <ul class="swap-list">${item.swaps.map(renderSwap).join("")}</ul>
+      </div>
+    `;
+    card.onclick = (e) => {
+      if (e.target.closest("a")) return;
+      card.classList.toggle("open");
+    };
+    grid.appendChild(card);
+  });
+}
+render();
+</script>
+</body>
+</html>
