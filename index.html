@@ -656,12 +656,86 @@ const data = {
         ]
       }
     ]
+  },
+  research: {
+    label: "Research",
+    icon: "🔬",
+    intro: "Peer-reviewed evidence for the strongest claims in this guide. Every finding below comes from published, peer-reviewed studies or government regulatory bodies (EPA, FDA, CDC, EFSA). No 'natural vs chemical' framing — just what the research actually shows about specific substances.",
+    items: [
+      {
+        title: "Microplastics are now found inside human bodies",
+        impact: "high",
+        problem: "In 2022, plastic particles were detected in the blood of 17 of 22 tested adults — the first confirmed finding of plastic circulating in human blood. Microplastics have since been documented in human placentas, lungs, breast milk, and testicles.",
+        why: "Long-term health effects are still being studied, but the particles persist in tissue and have been shown to cross biological barriers including the placenta. This isn't a distant-environmental-problem anymore; it's an exposure already inside most people.",
+        swaps: [
+          { desc: "Plastic particles detected in 77% of human blood samples", pick: "Leslie et al., Environment International (2022)", link: "https://www.sciencedirect.com/science/article/pii/S0160412022001258" },
+          { desc: "First documented microplastics in human placenta", pick: "Ragusa et al., Environment International (2021)", link: "https://www.sciencedirect.com/science/article/pii/S0160412020322297" }
+        ]
+      },
+      {
+        title: "Plastic tea bags release billions of particles per cup",
+        impact: "high",
+        problem: "McGill University researchers found that a single plastic tea bag steeped at brewing temperature releases approximately 11.6 billion microplastic and 3.1 billion nanoplastic particles into one cup of tea.",
+        why: "Brewing temperature (~95°C) accelerates polymer degradation. This is one of the highest documented single-product microplastic exposures — and many 'paper' tea bags are actually paper sealed with plastic (PET or nylon) that behaves identically.",
+        swaps: [
+          { desc: "Plastic teabags release billions of microparticles and nanoparticles into tea", pick: "Hernandez et al., Environmental Science & Technology (2019)", link: "https://pubs.acs.org/doi/10.1021/acs.est.9b02540" }
+        ]
+      },
+      {
+        title: "Plastic cutting boards shed millions of particles into food",
+        impact: "high",
+        problem: "A 2023 study in Environmental Science & Technology estimated that polypropylene cutting boards release 14–71 million microplastic particles per person per year during normal chopping. Polyethylene boards shed up to 79 million.",
+        why: "Unlike microplastics reaching us indirectly through water or air, cutting board shedding deposits particles directly onto food before it goes in your mouth. The research team called cutting boards an 'overlooked' exposure source.",
+        swaps: [
+          { desc: "Cutting Boards: An Overlooked Source of Microplastics in Human Food?", pick: "Yadav et al., Environmental Science & Technology (2023)", link: "https://pubs.acs.org/doi/10.1021/acs.est.2c08689" }
+        ]
+      },
+      {
+        title: "PFAS ('forever chemicals') cause serious health effects",
+        impact: "high",
+        problem: "The EPA classifies PFOA and PFOS — the most-studied PFAS compounds, used in non-stick coatings, waterproof textiles, and food packaging — as 'likely carcinogenic to humans.' In 2022, the National Academies of Sciences recommended clinical testing and follow-up for adults with high PFAS exposure.",
+        why: "PFAS accumulate in the body and don't break down in the environment — hence 'forever.' Established effects include kidney and testicular cancer, thyroid disease, liver damage, immune suppression, and reduced vaccine effectiveness in children. EPA set enforceable drinking water limits in 2024.",
+        swaps: [
+          { desc: "PFOA, PFOS, and other PFAS — human health toxicity assessment and drinking water standards", pick: "U.S. EPA", link: "https://www.epa.gov/sdwa/and-polyfluoroalkyl-substances-pfas" },
+          { desc: "Guidance on PFAS Exposure, Testing, and Clinical Follow-Up", pick: "National Academies of Sciences, Engineering, and Medicine (2022)", link: "https://nap.nationalacademies.org/catalog/26156/guidance-on-pfas-exposure-testing-and-clinical-follow-up" }
+        ]
+      },
+      {
+        title: "BPA is a confirmed endocrine disruptor",
+        impact: "high",
+        problem: "BPA (bisphenol A), used in polycarbonate plastics and canned-food linings, mimics estrogen. The FDA banned it from baby bottles (2012) and sippy cups (2013). In 2023, the European Food Safety Authority reduced its tolerable daily intake by roughly 20,000× after reviewing newer evidence.",
+        why: "Exposure levels once considered safe are now linked to reproductive effects, metabolic dysfunction, and developmental issues. Common BPA replacements (BPS, BPF) show similar hormone-mimicking activity in multiple studies — 'BPA-free' doesn't mean endocrine-disruptor-free.",
+        swaps: [
+          { desc: "FDA ban on BPA in baby bottles and sippy cups", pick: "U.S. Food and Drug Administration", link: "https://www.fda.gov/food/food-packaging-other-substances-come-contact-food-information-consumers/bisphenol-bpa-use-food-contact-application" },
+          { desc: "Re-evaluation of BPA hazards (new TDI ~20,000× lower than previous)", pick: "European Food Safety Authority (2023)", link: "https://www.efsa.europa.eu/en/efsajournal/pub/6857" }
+        ]
+      },
+      {
+        title: "Phthalates disrupt reproduction and development",
+        impact: "high",
+        problem: "Phthalates are plasticizers used in flexible vinyl, fragrance carriers, and many personal care products. The CDC's National Biomonitoring Program finds phthalates in nearly all tested Americans. In 2017, the U.S. permanently banned eight phthalates from children's toys and childcare articles.",
+        why: "Phthalate exposure during pregnancy is linked to developmental effects in male infants, reduced fertility, and altered hormone signaling. 'Fragrance' on an ingredient label is a common phthalate carrier — a major reason synthetic fragrance is flagged across this guide.",
+        swaps: [
+          { desc: "National Biomonitoring Program — Phthalates summary", pick: "U.S. Centers for Disease Control and Prevention", link: "https://www.cdc.gov/biomonitoring/Phthalates_BiomonitoringSummary.html" },
+          { desc: "Prohibition of children's toys and childcare articles containing specified phthalates", pick: "U.S. Consumer Product Safety Commission (2017)", link: "https://www.cpsc.gov/Regulations-Laws--Standards/Statutes/The-Consumer-Product-Safety-Improvement-Act/Phthalates" }
+        ]
+      },
+      {
+        title: "Synthetic clothing sheds 700,000 microfibers per wash",
+        impact: "high",
+        problem: "A 2019 study in Scientific Reports found that a typical 6kg household wash of synthetic garments releases about 700,000 microfibers into wastewater. Polyester, acrylic, and nylon fabrics shed continuously — during wear as well as washing.",
+        why: "Synthetic microfibers are the single largest category of microplastic pollution reaching the oceans. Indoor air in homes with synthetic textiles contains measurably higher microplastic concentrations than outdoor air — inhalation is the underrecognized domestic exposure route.",
+        swaps: [
+          { desc: "The contribution of washing processes of synthetic clothes to microplastic pollution", pick: "De Falco et al., Scientific Reports (2019)", link: "https://www.nature.com/articles/s41598-019-43023-x" }
+        ]
+      }
+    ]
   }
 };
 
 const tabsEl = document.getElementById("tabs");
 const contentEl = document.getElementById("room-content");
-const order = ["kitchen", "bathroom", "bedroom", "general"];
+const order = ["kitchen", "bathroom", "bedroom", "general", "research"];
 
 let active = "kitchen";
 
@@ -687,6 +761,7 @@ function render() {
   });
 
   const room = data[active];
+  const isResearch = active === "research";
   contentEl.innerHTML = `
     <div class="room-intro">${room.intro}</div>
     <div class="grid" id="grid"></div>
@@ -696,16 +771,24 @@ function render() {
   room.items.forEach((item) => {
     const card = document.createElement("div");
     card.className = "card";
+    const impactLabel = isResearch
+      ? "Strong evidence"
+      : (item.impact === "high" ? "High" : item.impact === "med" ? "Medium" : "Low");
+    const previewLabel = isResearch
+      ? `📄 ${item.swaps.length} source${item.swaps.length > 1 ? "s" : ""} · click to view`
+      : `→ ${item.swaps.length} swap${item.swaps.length > 1 ? "s" : ""} · click to see products`;
+    const detailHeader = isResearch ? "Peer-reviewed sources" : "Better alternatives";
+    const whyLabel = isResearch ? "Why it matters" : "Why it matters";
     card.innerHTML = `
       <div class="card-top">
         <h3 class="card-title">${item.title}</h3>
-        <span class="impact ${item.impact}">${item.impact === "high" ? "High" : item.impact === "med" ? "Medium" : "Low"}</span>
+        <span class="impact ${item.impact}">${impactLabel}</span>
       </div>
       <p class="problem">${item.problem}</p>
-      <div class="swap-preview">→ ${item.swaps.length} swap${item.swaps.length > 1 ? "s" : ""} · click to see products</div>
+      <div class="swap-preview">${previewLabel}</div>
       <div class="detail">
-        <div class="why"><strong>Why it matters:</strong> ${item.why}</div>
-        <h4>Better alternatives</h4>
+        <div class="why"><strong>${whyLabel}:</strong> ${item.why}</div>
+        <h4>${detailHeader}</h4>
         <ul class="swap-list">${item.swaps.map(renderSwap).join("")}</ul>
       </div>
     `;
