@@ -283,6 +283,18 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
+  .family-tag {
+    font-size: 11px;
+    background: var(--warn);
+    color: #fff;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-left: 6px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
 </style>
 </head>
 <body>
@@ -292,7 +304,7 @@
     <p>A room-by-room guide to the plastic hiding in everyday objects — and specific products to replace them with. Click any card to see why it matters and what to buy instead.</p>
     <details class="disclaimer">
       <summary>About these picks</summary>
-      <div class="disclaimer-body">Products are sourced from reputable reviewers (Wirecutter, The Good Trade, independent reviewers) and well-established direct-to-consumer brands. We have not tested all of them. Items tagged <span class="wc-tag">WC</span> are Wirecutter-recommended. Links go to brand sites or Amazon search results — availability and pricing change, so verify before you buy.</div>
+      <div class="disclaimer-body">Products are sourced from reputable reviewers (Wirecutter, The Good Trade, independent reviewers) and well-established direct-to-consumer brands. We have not tested all of them. Items tagged <span class="family-tag">★ Our Family Approved</span> are ones we personally use and stand behind. Items tagged <span class="wc-tag">WC</span> are Wirecutter-recommended. Links go to brand sites or Amazon search results — availability and pricing change, so verify before you buy.</div>
     </details>
   </header>
 
@@ -349,7 +361,7 @@ const data = {
         problem: "Plastic leaches faster when heated, oily, or acidic — which is exactly what leftovers are.",
         why: "Microwaving plastic, even 'microwave-safe' kinds, accelerates chemical migration. Tomato sauce and citrus are particularly effective at pulling compounds out of plastic.",
         swaps: [
-          { desc: "Fully plastic-free glass set (glass lids)", pick: "Pyrex Ultimate 10-Piece Glass Storage Set", link: "https://www.amazon.com/s?k=Pyrex+Ultimate+10+Piece+Glass+Storage", wc: true },
+          { desc: "Fully plastic-free glass set (glass lids)", pick: "Pyrex Ultimate 10-Piece Glass Storage Set", link: "https://www.amazon.com/s?k=Pyrex+Ultimate+10+Piece+Glass+Storage", wc: true, family: true },
           { desc: "Glass with sealed lids for leak-proof storage", pick: "Pyrex Freshlock 10-piece Set", link: "https://www.amazon.com/s?k=Pyrex+Freshlock+10+piece+glass+storage", wc: true },
           { desc: "Stainless steel tiffins for lunch/dry food", pick: "Onyx Stainless Steel Food Containers", link: "https://www.amazon.com/s?k=Onyx+stainless+steel+food+container" },
           { desc: "Mason jars for liquids and dry goods", pick: "Ball Wide Mouth Mason Jars", link: "https://www.amazon.com/s?k=Ball+wide+mouth+mason+jars" }
@@ -793,14 +805,20 @@ const order = ["kitchen", "bathroom", "bedroom", "general", "research"];
 let active = "kitchen";
 
 function renderSwap(s) {
+  const familyBadge = s.family ? `<span class="family-tag">★ Our Family Approved</span>` : '';
   const wcBadge = s.wc ? `<span class="wc-tag">WC</span>` : '';
+  const badges = `${familyBadge}${wcBadge}`;
   const linkBlock = s.pick && s.link
-    ? `<a class="product-link" href="${s.link}" target="_blank" rel="noopener noreferrer">→ ${s.pick}${wcBadge}<span class="arrow">↗</span></a>`
-    : (s.pick ? `<span class="product-link">${s.pick}</span>` : '');
+    ? `<a class="product-link" href="${s.link}" target="_blank" rel="noopener noreferrer">→ ${s.pick}${badges}<span class="arrow">↗</span></a>`
+    : (s.pick ? `<span class="product-link">${s.pick}${badges}</span>` : '');
   return `<li>
       <span class="swap-desc">${s.desc}</span>
       ${linkBlock}
     </li>`;
+}
+
+function sortSwaps(swaps) {
+  return [...swaps].sort((a, b) => (b.family ? 1 : 0) - (a.family ? 1 : 0));
 }
 
 function render() {
@@ -842,7 +860,7 @@ function render() {
       <div class="detail">
         <div class="why"><strong>${whyLabel}:</strong> ${item.why}</div>
         <h4>${detailHeader}</h4>
-        <ul class="swap-list">${item.swaps.map(renderSwap).join("")}</ul>
+        <ul class="swap-list">${sortSwaps(item.swaps).map(renderSwap).join("")}</ul>
       </div>
     `;
     card.onclick = (e) => {
