@@ -271,17 +271,6 @@
     color: var(--muted);
   }
   footer strong { color: var(--ink); }
-  .wc-tag {
-    font-size: 10px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 6px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
   .family-tag {
     font-size: 11px;
     background: var(--warn);
@@ -303,7 +292,7 @@
     <p>A room-by-room guide to the plastic hiding in everyday objects — and specific products to replace them with. Click any card to see why it matters and what to buy instead.</p>
     <details class="disclaimer">
       <summary>About these picks</summary>
-      <div class="disclaimer-body">Products are sourced from reputable reviewers (Wirecutter, The Good Trade, independent reviewers) and well-established direct-to-consumer brands. We have not tested all of them. Items tagged <span class="family-tag">★ Our Family Approved</span> are ones we personally use and stand behind. Items tagged <span class="wc-tag">WC</span> are Wirecutter-recommended. Links go to brand sites or Amazon search results — availability and pricing change, so verify before you buy.</div>
+      <div class="disclaimer-body">Products are sourced from reputable reviewers and well-established direct-to-consumer brands. We have not tested all of them. Items tagged <span class="family-tag">★ Our Family Approved</span> are ones we personally use and stand behind. Links go to brand sites or Amazon search results — availability and pricing change, so verify before you buy.</div>
     </details>
   </header>
 
@@ -338,7 +327,7 @@ const data = {
         why: "Forever chemicals (PFAS) have been linked to hormonal disruption and accumulate in the body. Overheated non-stick releases fumes toxic to pet birds and irritating to humans.",
         swaps: [
           { desc: "Cast iron — hand-cast in NY from 100% recycled iron", pick: "Borough Furnace 10.5\" Frying Skillet", link: "https://boroughfurnace.com/", family: true },
-          { desc: "Carbon steel — lighter than cast iron, heats fast", pick: "OXO Obsidian Carbon Steel Frypan", link: "https://www.amazon.com/s?k=OXO+Obsidian+Carbon+Steel+Frypan", wc: true },
+          { desc: "Carbon steel — lighter than cast iron, heats fast", pick: "OXO Obsidian Carbon Steel Frypan", link: "https://www.amazon.com/s?k=OXO+Obsidian+Carbon+Steel+Frypan" },
           { desc: "Stainless steel clad — versatile, dishwasher-safe", pick: "Made In 10\" Stainless Clad Frying Pan", link: "https://madeincookware.com/products/stainless-clad-frying-pan" },
           { desc: "Ceramic-coated — shorter lifespan but PFAS-free", pick: "Caraway Fry Pan", link: "https://www.carawayhome.com/products/fry-pan" }
         ]
@@ -360,8 +349,8 @@ const data = {
         problem: "Plastic leaches faster when heated, oily, or acidic — which is exactly what leftovers are.",
         why: "Microwaving plastic, even 'microwave-safe' kinds, accelerates chemical migration. Tomato sauce and citrus are particularly effective at pulling compounds out of plastic.",
         swaps: [
-          { desc: "Fully plastic-free glass set (glass lids)", pick: "Pyrex Ultimate 10-Piece Glass Storage Set", link: "https://www.amazon.com/s?k=Pyrex+Ultimate+10+Piece+Glass+Storage", wc: true, family: true },
-          { desc: "Glass with sealed lids for leak-proof storage", pick: "Pyrex Freshlock 10-piece Set", link: "https://www.amazon.com/s?k=Pyrex+Freshlock+10+piece+glass+storage", wc: true },
+          { desc: "Fully plastic-free glass set (glass lids)", pick: "Pyrex Ultimate 10-Piece Glass Storage Set", link: "https://www.amazon.com/s?k=Pyrex+Ultimate+10+Piece+Glass+Storage", family: true },
+          { desc: "Glass with sealed lids for leak-proof storage", pick: "Pyrex Freshlock 10-piece Set", link: "https://www.amazon.com/s?k=Pyrex+Freshlock+10+piece+glass+storage" },
           { desc: "Stainless steel tiffins for lunch/dry food", pick: "Onyx Stainless Steel Food Containers", link: "https://www.amazon.com/s?k=Onyx+stainless+steel+food+container" },
           { desc: "Mason jars for liquids and dry goods", pick: "Ball Wide Mouth Mason Jars", link: "https://www.amazon.com/s?k=Ball+wide+mouth+mason+jars" }
         ]
@@ -396,8 +385,8 @@ const data = {
         why: "A 2024 study found high levels of brominated flame retardants in black plastic kitchenware made from recycled electronics.",
         swaps: [
           { desc: "Wooden spoons and spatulas", pick: "Earlywood Wooden Utensils", link: "https://earlywooddesigns.com/" },
-          { desc: "Stainless steel fish turner (incredibly versatile)", pick: "Victorinox Swiss Army Slotted Fish Turner", link: "https://www.amazon.com/s?k=Victorinox+Swiss+Army+Slotted+Fish+Turner", wc: true },
-          { desc: "Food-grade silicone for heat-tolerant flex", pick: "GIR Ultimate Spatula", link: "https://gir.co/products/ultimate-spatula", wc: true }
+          { desc: "Stainless steel fish turner (incredibly versatile)", pick: "Victorinox Swiss Army Slotted Fish Turner", link: "https://www.amazon.com/s?k=Victorinox+Swiss+Army+Slotted+Fish+Turner" },
+          { desc: "Food-grade silicone for heat-tolerant flex", pick: "GIR Ultimate Spatula", link: "https://gir.co/products/ultimate-spatula" }
         ]
       },
       {
@@ -582,7 +571,7 @@ const data = {
         problem: "Plastic fibers against your skin for 8 hours; shedding microplastic into the air you breathe.",
         why: "Synthetic bedding is a top source of household microplastic. Natural fibers also regulate temperature better.",
         swaps: [
-          { desc: "Percale cotton — Wirecutter top pick", pick: "Authenticity 50 Percale Sheets", link: "https://authenticity50.com/collections/bedding", wc: true },
+          { desc: "Crisp, breathable percale cotton", pick: "Authenticity 50 Percale Sheets", link: "https://authenticity50.com/collections/bedding" },
           { desc: "Certified organic cotton for sensitive skin", pick: "Coyuchi Organic Percale Sheets", link: "https://www.coyuchi.com/collections/organic-cotton-sheets" },
           { desc: "European flax linen — gets softer over time", pick: "MagicLinen Sheet Set", link: "https://magiclinen.com/collections/bedding" },
           { desc: "Fair-trade organic, premium tier", pick: "Boll & Branch Signature Hemmed Sheet Set", link: "https://www.bollandbranch.com/products/signature-hemmed-sheet-set" },
@@ -804,9 +793,7 @@ const order = ["kitchen", "bathroom", "bedroom", "general", "research"];
 let active = "kitchen";
 
 function renderSwap(s) {
-  const familyBadge = s.family ? `<span class="family-tag">★ Our Family Approved</span>` : '';
-  const wcBadge = s.wc ? `<span class="wc-tag">WC</span>` : '';
-  const badges = `${familyBadge}${wcBadge}`;
+  const badges = s.family ? `<span class="family-tag">★ Our Family Approved</span>` : '';
   const linkBlock = s.pick && s.link
     ? `<a class="product-link" href="${s.link}" target="_blank" rel="noopener noreferrer">→ ${s.pick}${badges}<span class="arrow">↗</span></a>`
     : (s.pick ? `<span class="product-link">${s.pick}${badges}</span>` : '');
